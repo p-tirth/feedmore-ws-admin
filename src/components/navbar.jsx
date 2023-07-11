@@ -4,7 +4,8 @@ import {io} from 'socket.io-client'
 function Navbar({onSocket}) {
   var socket = ''
   const handleReconnect = (setSocket) =>{
-    socket = io('wss://donation-4tlz.onrender.com/')
+    const serverAddress = 'wss://donation-4tlz.onrender.com/' 
+    socket = io(serverAddress,)
     socket.on("connect",()=>{
       console.log(`You connected with id:${socket.id}`)
       socket.emit("adminConnection","hello")
