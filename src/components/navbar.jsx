@@ -5,7 +5,10 @@ function Navbar({onSocket}) {
   var socket = ''
   const handleReconnect = (setSocket) =>{
     const serverAddress = 'wss://donation-4tlz.onrender.com/' 
-    socket = io(serverAddress,)
+    socket = io(serverAddress,
+      {headers: {
+        "user-agent" : "Mozilla",
+      }})
     socket.on("connect",()=>{
       console.log(`You connected with id:${socket.id}`)
       socket.emit("adminConnection","hello")
