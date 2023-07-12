@@ -1,22 +1,35 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InfoBox from "./infoBox";
 
-
 const Hero = (socket) => {
+  const [data, setData] = useState([]);
 
-    const [data,setData] = useState([])
-    socket.socket.on("foodInfo",(newData) => {
-        // console.log(newData)
-        // newData = JSON.stringify(newData);
-        setData(data=>[...data,newData]);
-        console.log(data)
-      })
+  useEffect(() => {
+    const handleFoodInfo = (newData) => {
+      setData((prevData) => [...prevData, newData]);
+    };
+
+    socket.socket.on("foodInfo", handleFoodInfo);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      socket.socket.off("foodInfo", handleFoodInfo);
+    };
+  }, [socket.socket]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <>
-    {
-        data.map((d)=>(<InfoBox prop={d} />))
-    }
+      {data.map((d, index) => (
+        <InfoBox 
+          key={index} 
+          prop={d} 
+        />
+      ))}
     </>
   );
 };
