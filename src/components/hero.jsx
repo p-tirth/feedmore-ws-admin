@@ -10,7 +10,6 @@ const Hero = (socket) => {
         // console.log(newData)
         // newData = JSON.stringify(newData);
         setData(data=>[...data,newData]);
-        console.log(data)
       })
   return (
     <>

@@ -4,8 +4,9 @@ import {io} from 'socket.io-client'
 function Navbar({onSocket}) {
   var socket = ''
   const handleReconnect = () =>{
+    const localServer = "ws://localhost:3000"
     const serverAddress = 'wss://donation-4tlz.onrender.com/' 
-    socket = io(serverAddress,
+    socket = io(localServer,
       {headers: {
         "user-agent" : "Mozilla",
       }})
