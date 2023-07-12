@@ -3,7 +3,7 @@ import {io} from 'socket.io-client'
 
 function Navbar({onSocket}) {
   var socket = ''
-  const handleReconnect = (setSocket) =>{
+  const handleReconnect = ({onSocket}) =>{
     const serverAddress = 'wss://donation-4tlz.onrender.com/' 
     socket = io(serverAddress,
       {headers: {
