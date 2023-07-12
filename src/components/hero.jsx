@@ -7,6 +7,7 @@ const Hero = (socket) => {
 
   useEffect(() => {
     const handleFoodInfo = (newData) => {
+      newData = {...newData,s:socket}
       setData((prevData) => [...prevData, newData]);
     };
 
@@ -18,10 +19,9 @@ const Hero = (socket) => {
     };
   }, [socket.socket]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
   return (
     <>
       {data.map((d, index) => (
